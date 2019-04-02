@@ -27,7 +27,7 @@
           language:'zh-CN',
           dropdownMenu: true,
           manualColumnResize: true,
-          fixedColumnsLeft: 6,
+          fixedColumnsLeft: 7,
           contextMenu: true,
           manualColumnFreeze: true,
           data: [],
@@ -35,6 +35,12 @@
           columns: [
             {
               data: 'serialkey'
+            },
+            {
+              data: 'workdate',
+              type: 'date',
+              dateFormat: 'YYYY-MM-DD',
+              correctFormat: true
             },
             {
               data: ''
@@ -510,7 +516,7 @@
           ],
           nestedHeaders: [
             [
-              '', {label: '', colspan: 5},
+              '', {label: '', colspan: 6},
               {label: '收货组', colspan: 12},
               {label: '库存组', colspan: 22},
               {label: '拣货组', colspan: 8},
@@ -521,7 +527,7 @@
               {label: '安全组', colspan: 2}
             ],
             [
-              '', {label: '', colspan: 5},
+              '', {label: '', colspan: 6},
               {label: '工作量', colspan: 6}, {label: '工作时间', colspan: 6},
               {label: '工作量', colspan: 11}, {label: '工作时间', colspan: 11},
               {label: '工作量', colspan: 4}, {label: '工作时间', colspan: 4},
@@ -532,7 +538,7 @@
               {label: '', colspan: 1}, {label: '', colspan: 1}
             ],
             [
-              'ID', '组别', '姓名', '总工时', '组长工时', '5S工时',
+              'ID', '日期', '组别', '姓名', '总工时', '组长工时', '5S工时',
               '收货点数（件）', '外销扫描（件）', '贴标签（件）', '扫描盘点（件）', '移货（件）', '其他',
               '收货点数（时）', '外销扫描（时）', '贴标签（时）', '扫描盘点（时）', '移货（时）', '其他',
               '零拣补货（箱）', '存储上架（箱）', '移货（件）', '扫描盘点（件）', '托盘整理（箱）', '收货点数（件）', '并板（件）', '调拨扫描（件）', '道具收（单）', '道具出（单）', '其他',
