@@ -37,25 +37,28 @@
               data: 'serialkey'
             },
             {
-              data: 'workdate',
+              data: 'WORKDATE',
               type: 'date',
               dateFormat: 'YYYY-MM-DD',
               correctFormat: true
             },
             {
-              data: ''
+              data: 'GROUPNAME'
             },
             {
               data: 'userid'
             },
             {
-              data: ''
+              data: 'TOTALHR',
+              type: 'numeric'
             },
             {
-              data: ''
+              data: 'ZZHR',
+              type: 'numeric'
             },
             {
-              data: ''
+              data: 'HR5S',
+              type: 'numeric'
             },
             {
               data: 'SH_SHDS_EA',
