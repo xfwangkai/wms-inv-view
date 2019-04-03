@@ -1,6 +1,22 @@
 <template>
   <div>
-    <input type="button" value="保存" @click="commitDatas()"/>
+    <div>
+      日期：<input type="date" v-model="workDate">
+      组别：<select v-model="groupName">
+        <option value="">请选择组别</option>
+        <option>收货组</option>
+        <option>库存组</option>
+        <option>拣货组</option>
+        <option>出库组</option>
+        <option>退货组</option>
+        <option>质检组</option>
+        <option>网购组</option>
+        <option>道具组</option>
+      </select>
+      <input type="button" value="查询" @click="fetchData()"/>
+      <input type="button" value="保存" @click="commitDatas()"/>
+    </div>
+
     <div class="scroll-container">
       <hot-table :settings="hotSettings" ref="hotTableComponent"></hot-table>
     </div>
@@ -16,6 +32,8 @@
   export default {
     data: function() {
       return {
+        workDate: '',
+        groupName: '',
         deleteRowsList: [],
         updateRowsList: [],
         insertRowsList: [],
@@ -584,8 +602,8 @@
       },
       fetchData(){
         var _this = this
-
-        fetchData({zone: 'aaa'}).then(res => {
+        console.log()
+        fetchData({workDate: this.workDate, groupName: this.groupName}).then(res => {
           _this.hotSettings.data = res.data
         })
         this.deleteRowsList = []
