@@ -7,7 +7,7 @@ import axios from 'axios'
 */
 export const TIME_OUT = 100000;    // 请求超时时间
 export const ERR_OK = true;      // 请求成功返回状态，字段和后台统一
-export const baseUrl = 'http://localhost:8081'   // 引入全局url，定义在全局变量process.env中
+export const baseUrl = 'http://192.168.99.253:8081'   // 引入全局url，定义在全局变量process.env中
 export const wsBaseUrl = 'ws://192.168.100.14:8081/websocket'
 
 // 请求超时时间

@@ -14,7 +14,7 @@
         <option>道具组</option>
       </select>
       <input type="button" value="查询" @click="fetchData()"/>
-      <input type="button" value="保存" @click="commitDatas()"/>
+      <input type="button" value="保存" @click="commitDatas()" style="display: none"/>
     </div>
 
     <div class="scroll-container">
@@ -34,6 +34,7 @@
       return {
         workDate: '',
         groupName: '',
+        initData: [],
         deleteRowsList: [],
         updateRowsList: [],
         insertRowsList: [],
@@ -593,26 +594,34 @@
     },
     methods: {
       commitDatas(){
-        console.log(this.deleteRowsList)
         saveData({data: this.$refs.hotTableComponent.hotInstance.getSourceData(), delData: this.deleteRowsList}).then(res => {
-            alert('保存成功')
-            this.fetchData()
-          }
-        )
+          this.fetchData()
+        })
       },
       fetchData(){
-        var _this = this
-        console.log()
         fetchData({workDate: this.workDate, groupName: this.groupName}).then(res => {
-          _this.hotSettings.data = res.data
+          this.$refs.hotTableComponent.hotInstance.loadData(res.data)
+          this.deleteRowsList = []
+          this.updateRowsList = []
+          this.insertRowsList = []
+          this.initData = res.data
+          var hot = this.$refs.hotTableComponent.hotInstance
+          this.$refs.hotTableComponent.hotInstance.updateSettings({
+            cells: function (row, col) {
+              var cellProperties = {};
+
+              //if (hot.getData()[row][1] === '2019-04-02') {
+              //  cellProperties.readOnly = true;
+              //}
+
+              return cellProperties;
+            }
+          })
         })
-        this.deleteRowsList = []
-        this.updateRowsList = []
-        this.insertRowsList = []
       },
       removeRow(index, amount, physicalRows){
         for(var i=0;i<physicalRows.length;i++){
-          this.deleteRowsList.push(this.$refs.hotTableComponent.hotInstance.getDataAtRow(physicalRows[i])[0]);
+          this.deleteRowsList.push(this.initData[(physicalRows[i])].serialkey);
         }
       },
       updateRow(changes, source){
